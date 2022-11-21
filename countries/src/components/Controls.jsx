@@ -12,12 +12,13 @@ const options = [
 
 export const Controls = () => {
 
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('');
+    const [region, setRegion] = useState('');
 
     return (
         <div>
             <Search search={search} setSearch={setSearch} />
-            <CustomSelect options={options} placeholder="Filter by region" isClearable isSearchable={false} />
+            <CustomSelect value={region} onChange={setRegion} options={options} placeholder="Filter by region" isClearable isSearchable={false} />
         </div>
     );
 };
