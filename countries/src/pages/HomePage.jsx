@@ -14,16 +14,16 @@ const Button = styled.button`
     border-radius: var(--radii);
 `;
 
-export const HomePage = () => {
-
-    const [countries, setCountries] = useState([]);
+export const HomePage = ({ countries, setCountries }) => {
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(ALL_COUNTRIES)
-            .then((res) => res.json())
-            .then((data) => setCountries(data))
+        if (!countries.length) {
+            fetch(ALL_COUNTRIES)
+                .then((res) => res.json())
+                .then((data) => setCountries(data))
+        };
     }, []);
 
     return (
