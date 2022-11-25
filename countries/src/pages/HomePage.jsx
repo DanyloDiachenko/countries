@@ -12,6 +12,7 @@ const Button = styled.button`
     border: none;
     padding: 0;
     border-radius: var(--radii);
+    text-align: start;
 `;
 
 export const HomePage = ({ setCountries, countries }) => {
@@ -49,7 +50,7 @@ export const HomePage = ({ setCountries, countries }) => {
             <Controls onSearch={handleSearch} />
             {console.log('Filtred: ' + countries)}
             <List>
-                {filtredCountries.map((country) => {
+                {!countries.length ? <h1>Loading...</h1> : filtredCountries.map((country) => {
                     const countryInfo = {
                         img: country.flags.png,
                         name: country.name,
