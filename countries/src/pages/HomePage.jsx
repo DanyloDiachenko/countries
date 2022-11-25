@@ -14,51 +14,68 @@ const Button = styled.button`
     border-radius: var(--radii);
 `;
 
-export const HomePage = ({ countries, setCountries }) => {
+export const HomePage = ({ setCountries, countries }) => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!countries.length) {
-            fetch(ALL_COUNTRIES)
-                .then((res) => res.json())
-                .then((data) => setCountries(data))
+    const [filtredCountries, setFilteredCountries] = useState(countries);
+
+    const handleSearch = (search, region) => {
+        let data = [...countries];
+
+        if (region) {
+            data = data.filter((country) => country.region.includes(region));
         };
+
+        if (search) {
+            data = data.filter((country) => country.name.toLowerCase().includes(search.toLowerCase()));
+        };
+
+        setFilteredCountries(data);
+    };
+
+    useEffect(() => {
+        fetch(ALL_COUNTRIES)
+            .then((res) => res.json())
+            .then((data) => setCountries(data))
     }, []);
+
+    useEffect(() => {
+        handleSearch();
+    }, [countries]);
 
     return (
         <>
-            <Controls />
-            {countries.length ? (
-                <List>
-                    {countries.map((country) => {
-                        const countryInfo = {
-                            img: country.flags.png,
-                            name: country.name,
-                            info: [
-                                {
-                                    title: 'Population',
-                                    description: country.population.toLocaleString(),
-                                },
-                                {
-                                    title: 'Region',
-                                    description: country.region,
-                                },
-                                {
-                                    title: 'Capital',
-                                    description: country.capital,
-                                },
-                            ],
-                        };
+            <Controls onSearch={handleSearch} />
+            {console.log('Filtred: ' + countries)}
+            <List>
+                {filtredCountries.map((country) => {
+                    const countryInfo = {
+                        img: country.flags.png,
+                        name: country.name,
+                        info: [
+                            {
+                                title: 'Population',
+                                description: country.population.toLocaleString(),
+                            },
+                            {
+                                title: 'Region',
+                                description: country.region,
+                            },
+                            {
+                                title: 'Capital',
+                                description: country.capital,
+                            },
+                        ],
+                    };
 
-                        return (
-                            <Button onClick={() => navigate(`/country/${country.name}`)}>
-                                <Card key={country.name} {...countryInfo} />
-                            </Button>
-                        )
-                    })}
-                </List>
-            ) : <h1>Loading...</h1>}
+                    return (
+                        <Button onClick={() => navigate(`/country/${country.name}`)}>
+                            <Card key={country.name} {...countryInfo} />
+                        </Button>
+                    )
+                })}
+            </List>
         </>
     );
 };
