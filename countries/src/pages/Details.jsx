@@ -191,7 +191,7 @@ export const Details = () => {
                         </div>
                     </Wrapper>
                 </>
-            )};
+            )}
         </>
     );
 };
