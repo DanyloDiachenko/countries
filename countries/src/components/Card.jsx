@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.article`
-    border-radius: var(--radii);
     background-color: var(--colors-ui-base);
     box-shadow: var(--shadow);
     cursor: pointer;
@@ -24,7 +23,8 @@ const CardBody = styled.div`
 const CardTitle = styled.h3`
     margin: 0;
     font-size: var(--fs-md);
-    fontweight: var(--fw-bold);
+    font-weight: var(--fw-bold);
+    color: var(--colors-text);
 `;
 
 const CardList = styled.ul`
@@ -40,8 +40,13 @@ const CardListItem = styled.li`
 
     & > b {
         font-weight: var(--fw-bold);
+        color: var(--colors-text);
     };
 `;
+
+const Description = styled.span`
+    color: var(--colors-text);
+`
 
 export const Card = ({ img, name, info = [], onClick }) => {
     return (
@@ -52,7 +57,7 @@ export const Card = ({ img, name, info = [], onClick }) => {
                 <CardList>
                     {info.map((el) => (
                         <CardListItem key={el.CardTitle}>
-                            <b>{el.title}: </b>{el.description}
+                            <b>{el.title}: </b><Description>{el.description}</Description>
                         </CardListItem>
                     ))}
                 </CardList>

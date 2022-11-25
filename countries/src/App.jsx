@@ -1,57 +1,23 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, Routes, Route } from 'react-router-dom';
 import { Controls } from './components/Controls';
 import { Header } from './components/Header';
 import { Main } from './components/Main';
 import { List } from './components/List';
 import { Card } from './components/Card';
 import { ALL_COUNTRIES } from './config';
+import { HomePage } from './pages/HomePage';
+import { NotFound } from './pages/NotFound';
+import { Details } from './pages/Details';
 
 const App = () => {
-
-  const [countries, setCountries] = useState([]);
-
-
-  console.log(countries)
-  useEffect(() => {
-    fetch(ALL_COUNTRIES)
-    .then((res) => res.json())
-    .then((data) => setCountries(data))
-  }, []);
-
   return (
-    <>
-      <Header />
-      <Main>
-        <Controls />
-        <List>
-          {countries.map((country) => {
-            const countryInfo = {
-              img: country.flags.png,
-              name: country.name,
-              info: [
-                {
-                  title: 'Population',
-                  description: country.population.toLocaleString(),
-                },
-                {
-                  title: 'Region',
-                  description: country.region,
-                },
-                {
-                  title: 'Capital',
-                  description: country.capital,
-                },
-              ],
-            };
-
-            return (
-              <Card key={country.name} {...countryInfo} />
-            )
-          })}
-        </List>
-      </Main>
-    </>
-  );
-};
-
+    <Routes>
+      <Route exact path="/" element={<HomePage />} />
+      <Route path='/details' element={<Details />} />
+      <Route element={<NotFound />} />
+    </Routes>
+  )
+}
+  
 export default App;
