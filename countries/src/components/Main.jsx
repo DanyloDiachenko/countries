@@ -7,7 +7,7 @@ const Wrapper = styled.main`
     media(min-width: 767px) {
         padding: 4rem 0;
     };
-`
+`;
 
 export const Main = ({ children }) => {
     return (

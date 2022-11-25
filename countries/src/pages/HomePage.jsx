@@ -20,7 +20,6 @@ export const HomePage = () => {
 
     const navigate = useNavigate();
 
-    console.log(countries)
     useEffect(() => {
         fetch(ALL_COUNTRIES)
             .then((res) => res.json())
@@ -29,40 +28,37 @@ export const HomePage = () => {
 
     return (
         <>
-            <Header />
-            <Main>
-                <Controls />
-                {countries.length ? (
-                    <List>
-                        {countries.map((country) => {
-                            const countryInfo = {
-                                img: country.flags.png,
-                                name: country.name,
-                                info: [
-                                    {
-                                        title: 'Population',
-                                        description: country.population.toLocaleString(),
-                                    },
-                                    {
-                                        title: 'Region',
-                                        description: country.region,
-                                    },
-                                    {
-                                        title: 'Capital',
-                                        description: country.capital,
-                                    },
-                                ],
-                            };
+            <Controls />
+            {countries.length ? (
+                <List>
+                    {countries.map((country) => {
+                        const countryInfo = {
+                            img: country.flags.png,
+                            name: country.name,
+                            info: [
+                                {
+                                    title: 'Population',
+                                    description: country.population.toLocaleString(),
+                                },
+                                {
+                                    title: 'Region',
+                                    description: country.region,
+                                },
+                                {
+                                    title: 'Capital',
+                                    description: country.capital,
+                                },
+                            ],
+                        };
 
-                            return (
-                                <Button onClick={() => navigate('/details')}>
-                                    <Card key={country.name} {...countryInfo} />
-                                </Button>
-                            )
-                        })}
-                    </List>
-                ) : <h1>Loading...</h1>}
-            </Main>
+                        return (
+                            <Button onClick={() => navigate(`/country/${country.name}`)}>
+                                <Card key={country.name} {...countryInfo} />
+                            </Button>
+                        )
+                    })}
+                </List>
+            ) : <h1>Loading...</h1>}
         </>
     );
 };
