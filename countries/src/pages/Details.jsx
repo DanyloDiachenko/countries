@@ -48,6 +48,7 @@ const CImage = styled.img`
 const CTitle = styled.h1`
     margin: 0;
     font-weight: var(--fw-normal);
+    margin-bottom: 20px;
 `;
 
 const ListGroup = styled.div`
@@ -66,8 +67,6 @@ const List = styled.ul`
     list-style: none;
     margin: 0;
     padding: 0;
-
-    @media()
 `;
 
 const ListItem = styled.li`
@@ -88,14 +87,25 @@ const Meta = styled.div`
     & > b {
         font-weight: var(--fw-bold);
     };
+
+    @media(min-width: 727px) {
+        flex-direction: row;
+        align-items: center;
+    };
 `;
 
 const TagGroup = styled.div`
-
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 `;
 
 const Tag = styled.span`
-
+    padding: 0 1rem;
+    background-color: var(--colors-ui-base);
+    box-shadow: var(--shadow);
+    line-height: 1.5;
+    cursor: pointer;
 `;
 
 export const Details = () => {
