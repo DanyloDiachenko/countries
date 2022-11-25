@@ -46,7 +46,7 @@ const CardListItem = styled.li`
 
 const Description = styled.span`
     color: var(--colors-text);
-`
+`;
 
 export const Card = ({ img, name, info = [], onClick }) => {
     return (

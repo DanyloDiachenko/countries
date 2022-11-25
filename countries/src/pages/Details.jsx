@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 import styled from 'styled-components';
-import { searchByCountry } from '../config';
+import { searchByCountry, filterByCode } from '../config';
 
 const Button = styled.button`
     width: 85px;
@@ -114,16 +114,25 @@ export const Details = () => {
     const navigate = useNavigate();
 
     const [c, setCountryInfo] = useState(null);
+    const [neighbors, setNeighbors] = useState([]);
 
     useEffect(() => {
         fetch(searchByCountry(params.name))
             .then((res) => res.json())
             .then((data) => setCountryInfo(data[0]))
-    }, []);
+    }, [c]);
+
+    useEffect(() => {
+        if (c) {
+            fetch(filterByCode(c.borders))
+                .then(res => res.json())
+                .then(data => setNeighbors(data));
+        };
+    }, [c]);
 
     return (
         <>
-            {console.log(c)}
+            {console.log(neighbors)}
             {!c ? <h1>Loading...</h1> : (
                 <>
                     <Button onClick={() => navigate(-1)}><BiArrowBack />Back</Button>
@@ -169,12 +178,12 @@ export const Details = () => {
                             </ListGroup>
                             <Meta>
                                 <b>Border Countries:</b>
-                                {!c.borders.length ? (
+                                {!neighbors.length ? (
                                     <span>There is no border countries</span>
                                 ) : (
                                     <TagGroup>
-                                        {c.borders.map((b) => (
-                                            <Tag key={b}>{b}</Tag>
+                                        {neighbors.map((neighbor) => (
+                                            <Tag onClick={() => navigate(`/country/${neighbor.name}`)} key={neighbor}>{neighbor.name}</Tag>
                                         ))}
                                     </TagGroup>
                                 )}
@@ -182,7 +191,7 @@ export const Details = () => {
                         </div>
                     </Wrapper>
                 </>
-            )}
+            )};
         </>
     );
 };
