@@ -124,7 +124,7 @@ export const Details = () => {
 
     useEffect(() => {
         if (c) {
-            fetch(filterByCode(c.borders))
+            fetch(filterByCode(c.borders && c.borders))
                 .then(res => res.json())
                 .then(data => setNeighbors(data));
         };
@@ -132,7 +132,6 @@ export const Details = () => {
 
     return (
         <>
-            {console.log(neighbors)}
             {!c ? <h1>Loading...</h1> : (
                 <>
                     <Button onClick={() => navigate(-1)}><BiArrowBack />Back</Button>

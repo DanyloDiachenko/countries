@@ -48,7 +48,6 @@ export const HomePage = ({ setCountries, countries }) => {
     return (
         <>
             <Controls onSearch={handleSearch} />
-            {console.log('Filtred: ' + countries)}
             <List>
                 {!countries.length ? <h1>Loading...</h1> : filtredCountries.map((country) => {
                     const countryInfo = {
