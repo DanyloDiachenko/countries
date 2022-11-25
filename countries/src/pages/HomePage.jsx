@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Controls } from '../components/Controls';
-import { Header } from '../components/Header';
-import { Main } from '../components/Main';
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { ALL_COUNTRIES } from '../config';
