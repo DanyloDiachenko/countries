@@ -8,7 +8,7 @@
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "/logotype.png",
+            "src": "/favicon.png",
             "type": "image/png",
             "sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
             "purpose": "any maskable"

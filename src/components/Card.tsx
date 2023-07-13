@@ -15,7 +15,9 @@ const Wrapper = styled.article`
     }
 `;
 
-const CardImage = styled.img`
+const CardImage = styled.img.attrs({
+    loading: "lazy",
+})`
     display: block;
     width: 100%;
     height: 150px;
