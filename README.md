@@ -21,4 +21,4 @@ demo-link: https://countries-nine-drab.vercel.app/
 - @types/styled-components (ver. 5.1.26)
 
 ### Perfomance:
-[![Perfomance screen photo](https://imgur.com/827b06d4-39f9-4859-a795-26016cb5e138)
+[![Perfomance screen photo](https://imgur.com/827b06d4-39f9-4859-a795-26016cb5e138)]
