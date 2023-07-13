@@ -1,10 +1,18 @@
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+
+import { CardProps } from "src/interfaces/card.props";
 
 const Wrapper = styled.article`
     background-color: var(--colors-ui-base);
-    box-shadow: var(--shadow);
     cursor: pointer;
     overflow: hidden;
+    transition: 0.3s;
+    height: 100%;
+
+    &:hover {
+        box-shadow: var(--shadow);
+    }
 `;
 
 const CardImage = styled.img`
@@ -41,23 +49,24 @@ const CardListItem = styled.li`
     & > b {
         font-weight: var(--fw-bold);
         color: var(--colors-text);
-    };
+    }
 `;
 
 const Description = styled.span`
     color: var(--colors-text);
 `;
 
-export const Card = ({ img, name, info = [], onClick }) => {
+export const Card = ({ img, name, info = [] }: CardProps): JSX.Element => {
     return (
-        <Wrapper onclick={onClick}>
+        <Wrapper>
             <CardImage src={img} alt={name} />
             <CardBody>
                 <CardTitle>{name}</CardTitle>
                 <CardList>
                     {info.map((el) => (
-                        <CardListItem key={el.CardTitle}>
-                            <b>{el.title}: </b><Description>{el.description}</Description>
+                        <CardListItem key={el.title}>
+                            <b>{el.title}: </b>
+                            <Description>{el.description}</Description>
                         </CardListItem>
                     ))}
                 </CardList>
