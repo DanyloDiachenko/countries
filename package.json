@@ -1,9 +1,10 @@
 {
     "name": "countries",
     "version": "0.1.0",
-    "homepage": "https://DanyloDiachenko.github.io/Countries",
+    "homepage": ".",
     "private": true,
     "dependencies": {
+        "global": "^4.4.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.6.0",
@@ -16,8 +17,8 @@
         "@types/node": "^20.4.2",
         "@types/react": "^18.2.14",
         "@types/react-dom": "^18.2.7",
-        "typescript": "^5.1.6",
-        "@types/styled-components": "^5.1.26"
+        "@types/styled-components": "^5.1.26",
+        "typescript": "^5.1.6"
     },
     "scripts": {
         "start": "react-scripts start",
